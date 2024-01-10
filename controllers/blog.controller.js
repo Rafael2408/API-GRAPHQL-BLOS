@@ -81,7 +81,7 @@ const blogResolver = {
         num_likes: async(autor) =>{
             const res = await db.one(`
                 SELECT COUNT(r.rea_like = TRUE) FROM 
-                reaccion r, 
+                reaccion r
                 WHERE r.aut_id = $1
             `, [autor.aut_id])
             return res.count
