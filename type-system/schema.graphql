@@ -1,0 +1,66 @@
+type Query {
+    publicaciones(id: Int): [publicacion],
+    comentarios(id: Int): [comentario],
+    autores(id: Int): [autor],
+}
+
+type Mutation{
+    createComentario(comentario: inputComentario): comentario
+    updateComentario(comentario: updateComentario): comentario
+    deleteComentario(id: Int!): comentario
+}
+
+type comentario{
+    pub_id: Int!,
+    aut_id: Int!,
+    com_id: Int!,
+    com_descripcion: String!,
+    num_likes: Int!,
+}
+
+type publicacion{
+    categoria: categoria!,
+    pub_id: Int!,
+    aut_id: Int!,
+    pub_titulo: String!,
+    pub_descripcion: String!,
+    comentarios: [comentario]
+    num_comentarios: Int!,
+}
+
+type reaccion{
+    rea_id: Int,
+    com_id: Int,
+    aut_id: Int,
+    rea_like: Boolean,
+}
+
+type autor{
+    aut_id: Int!,
+    aut_usuario: String!,
+    aut_nombre: String!,
+    num_publicaciones: Int,
+    num_likes: Int!,
+    publicaciones: [publicacion]
+}
+
+type categoria{
+    cat_id: Int!,
+    cat_titulo: String!,
+}
+
+input inputComentario{
+    pub_id: Int!,
+    aut_id: Int!,
+    com_descripcion: String!,
+}
+
+input updateComentario{
+    com_id: Int!,
+    pub_id: Int!,
+    aut_id: Int!,
+    com_descripcion: String!,
+}
+
+
+
