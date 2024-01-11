@@ -92,7 +92,7 @@ const blogResolver = {
             const res = await db.one(`
                 SELECT COUNT(r.rea_like = TRUE) FROM 
                 reaccion r, comentario c
-                WHERE r.com_id = $1
+                WHERE c.com_id = r.com_id AND r.com_id = $1
             `, [comentario.com_id])
             return res.count
         }
